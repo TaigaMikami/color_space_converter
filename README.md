@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/TaigaMikami/color_space_converter.svg?branch=master)](https://travis-ci.org/TaigaMikami/color_space_converter)
+[![Coverage Status](https://coveralls.io/repos/github/TaigaMikami/color_space_converter/badge.svg?branch=master)](https://coveralls.io/github/TaigaMikami/color_space_converter?branch=master)
+
 # ColorSpaceConverter
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/color_space_converter`. To experiment with that code, run `bin/console` for an interactive prompt.
