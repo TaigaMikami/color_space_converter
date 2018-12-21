@@ -1,8 +1,10 @@
 require "bundler/setup"
-require "color_space_converter"
+Dir.glob(File.join(File.dirname(__FILE__), "../lib/**/*.rb")).each { |f| require f }
 
 require 'coveralls'
 Coveralls.wear!
+
+
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
