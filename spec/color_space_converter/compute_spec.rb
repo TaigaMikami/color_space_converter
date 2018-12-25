@@ -31,6 +31,8 @@ RSpec.describe ColorSpaceConverter::Compute do
 
   context '#lab2xyz' do
     subject { cs.lab2xyz(46.69, 26.3, -24.21, x_n: 95.039, y_n: 100, z_n: 108.880)}
-    it { expect(subject).to eq([19.8213907158935, 15.78413700265745, 31.513765784816886]) }
+    it 'D65光源での変換' do
+      expect(subject).to eq([19.8213907158935, 15.78413700265745, 31.513765784816886])
+    end
   end
 end
