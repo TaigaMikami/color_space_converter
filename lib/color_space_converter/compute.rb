@@ -113,5 +113,15 @@ module ColorSpaceConverter
       end
       xyz
     end
+
+    def rgb2lab(r, g, b, x_n: 100.0, y_n: 100.0, z_n: 100.0)
+      x, y, z = rgb2xyz(r, g, b)
+      xyz2lab(x, y, z, x_n: x_n, y_n: y_n, z_n: z_n)
+    end
+
+    def lab2rgb(l, a, b, x_n: 100.0, y_n: 100.0, z_n: 100.0)
+      x, y, z = lab2xyz(l, a, b, x_n: x_n, y_n: y_n, z_n: z_n)
+      xyz2rgb(x, y, z)
+    end
   end
 end

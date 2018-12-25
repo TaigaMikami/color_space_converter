@@ -35,4 +35,14 @@ RSpec.describe ColorSpaceConverter::Compute do
       expect(subject).to eq([19.8213907158935, 15.78413700265745, 31.513765784816886])
     end
   end
+
+  context '#rgb2lab' do
+    subject { cs.rgb2lab(128, 128, 128, x_n: 95.039, y_n: 100, z_n: 108.880) }
+    it { expect(subject).to eq([53.58501345216902, 0.011571257239550992, -0.007345506730205287]) }
+  end
+
+  context '#lab2rgb' do
+    subject { cs.lab2rgb(53.58501345216902, 0.011571257239550992, -0.007345506730205287, x_n: 95.039, y_n: 100, z_n: 108.880) }
+    it { expect(subject).to eq([128, 128, 128]) }
+  end
 end
