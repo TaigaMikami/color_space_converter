@@ -59,5 +59,59 @@ module ColorSpaceConverter
       end
       rgb
     end
+
+    def xyz2lab(x, y, z, x_n: 100.0, y_n: 100.0, z_n: 100.0)
+      xyz_n = [x_n, y_n, z_n]
+      f_xyz = []
+      [x, y, z].each_with_index do |n, i|
+        if n/xyz_n[i] < 0.008856
+          f = (903.3*n/xyz_n[i]+16)/116
+        else
+          f = (n/xyz_n[i])**(1.0/3.0)
+        end
+        f_xyz << f
+      end
+      l = 116*f_xyz[1] - 16
+      a = 500*(f_xyz[0]-f_xyz[1])
+      b = 200*(f_xyz[1]-f_xyz[2])
+      [l, a, b]
+    end
+
+    def lab2xyz(l, a, b, x_n: 100.0, y_n: 100.0, z_n: 100.0)
+      xyz_n = [x_n, y_n, z_n]
+      xyz = []
+
+      if l > 903.3*0.008856
+        y = ((l+16)/116)**3
+      else
+        y = l/903.3
+      end
+
+      if y > 0.008856
+        fy = (l+16)/116
+      else
+        fy = (903.3*y+16)/116
+      end
+
+      fx =  a/500 + fy
+      fz = fy - b/200
+
+      if fz**3 > 0.008856
+        x = fx**3
+      else
+        x = (116*fx-16)/903.3
+      end
+
+      if fz**3 > 0.008856
+        z = fz**3
+      else
+        z = (116*fz-16)/903.3
+      end
+
+      [x, y, z].each_with_index do |n, i|
+        xyz << xyz_n[i] * n
+      end
+      xyz
+    end
   end
 end
