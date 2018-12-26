@@ -25,8 +25,9 @@ module ColorSpaceConverter
       if @xyz
         @rgb = xyz2rgb(@xyz[0], @xyz[1], @rgb[2])
       elsif @lab
-        @lab = lab2rgb(@lab[0], @lab[1], @lab[2], x_n: x_n, y_n: y_n, z_n: z_n)
+        @rgb = lab2rgb(@lab[0], @lab[1], @lab[2], x_n: x_n, y_n: y_n, z_n: z_n)
       end
+      @rgb
     end
 
     def calc_xyz(x_n: 100, y_n: 100, z_n: 100)
@@ -35,6 +36,7 @@ module ColorSpaceConverter
       elsif @lab
         @xyz = lab2xyz(@lab[0], @lab[1], @lab[2], x_n: x_n, y_n: y_n, z_n: z_n)
       end
+      @xyz
     end
 
     def calc_lab(x_n: 100, y_n: 100, z_n: 100)
@@ -43,6 +45,7 @@ module ColorSpaceConverter
       elsif @xyz
         @lab = xyz2lab(@xyz[0], @xyz[1], @xyz[2], x_n: x_n, y_n: y_n, z_n: z_n)
       end
+      @lab
     end
   end
 end
