@@ -39,16 +39,4 @@ RSpec.describe ColorSpaceConverter::ColorSpace do
       it { expect(cs.calc_lab(x_n: 95.039, y_n: 100, z_n: 108.880)).to eq ([53.58501345216902, 0.011571257239550992, -0.007345506730205287])}
     end
   end
-
-  context '#new' do
-    let(:cs) { ColorSpaceConverter::ColorSpace.new }
-
-    context 'objecrt' do
-      it { expect(cs).to be_an_instance_of(ColorSpaceConverter::ColorSpace) }
-    end
-
-    context '@rgb' do
-      it { expect(cs.rgb).to eq ([0, 0, 0])}
-    end
-  end
 end
