@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/TaigaMikami/color_space_converter.svg?branch=master)](https://travis-ci.org/TaigaMikami/color_space_converter)
 [![Coverage Status](https://coveralls.io/repos/github/TaigaMikami/color_space_converter/badge.svg?branch=master)](https://coveralls.io/github/TaigaMikami/color_space_converter?branch=master)
+[![Gem Version](https://badge.fury.io/rb/color_space_converter.svg)](https://badge.fury.io/rb/color_space_converter)
 
 # ColorSpaceConverter
 
