@@ -3,9 +3,14 @@
 
 # ColorSpaceConverter
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/color_space_converter`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to ColorSpaceConverter gem!
+It is a gem for easy conversion of color space such as rgb, xyz, lab.
 
-TODO: Delete this and the text above, and describe your gem
+## Corresponding color space
+- rgb(hex)
+- rgb
+- xyz
+- lab
 
 ## Installation
 
@@ -25,8 +30,31 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Instantiation
 
+```ruby
+require 'color_space_converter'
+
+obj = ColorSpaceConverter.new
+
+# Otherwise
+# ColorSpaceConverter.new(color_space, element1(ex: r), element2(ex: g), element3(ex: b)) 
+obj = ColorSpaceConverter.new('rgb', 128, 128, 128) 
+
+```
+
+### Calculation
+```ruby
+# to rgb
+obj.calc_rgb
+
+# to xyz
+obj.calc_xyz
+
+# to lab
+obj.calc_lab
+
+```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -44,3 +72,6 @@ The gem is available as open source under the terms of the [MIT License](https:/
 ## Code of Conduct
 
 Everyone interacting in the ColorSpaceConverter project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/color_space_converter/blob/master/CODE_OF_CONDUCT.md).
+
+## Author
+[TaigaMikami](https://github.com/TaigaMikami)
