@@ -7,6 +7,7 @@
 
 Welcome to ColorSpaceConverter gem!
 It is a gem for easy conversion of color space such as rgb, xyz, lab.
+This gem allows you to take into account the brightness of your display (if your display's gamut setting is sRGB).
 
 ## Corresponding color space
 - rgb(hex)
