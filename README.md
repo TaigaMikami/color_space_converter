@@ -81,6 +81,9 @@ Everyone interacting in the ColorSpaceConverter project’s codebases, issue tra
 
 ## TODO
 Correspond to the following color space.
+- [x] RGB
+- [x] XYZ
+- [x] LAB
 - [ ] HSV
 - [ ] PCCS
 - [ ] NCS
