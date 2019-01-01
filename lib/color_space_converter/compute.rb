@@ -123,5 +123,32 @@ module ColorSpaceConverter
       x, y, z = lab2xyz(l, a, b, x_n: x_n, y_n: y_n, z_n: z_n)
       xyz2rgb(x, y, z)
     end
+
+    def rgb2hsv(r, g, b)
+      max = [r, g, b].max
+      min = [r, g, b].min
+      h = 0.0
+      s = 0.0
+      v = max.to_f
+
+      if max != min
+        if max == r
+          h = (b-g).to_f/(max-min) * 60
+        elsif max == g
+          h = (2 + (r-b).to_f/(max-min)) * 60
+        elsif max == g
+          h = (4 + (g-r).to_f/(max-min)) * 60
+        end
+        s = (max - min).to_f/ max
+      end
+
+      if h < 0
+        h += 360
+      end
+      h = h.round
+      s = (s*100).round
+      v = ((v/255)*100).round
+      [h, s, v]
+    end
   end
 end
