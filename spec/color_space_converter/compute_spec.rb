@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe ColorSpaceConverter::Compute do
+RSpec.describe ColorSpaceConverter::Compute do # rubocop: disable Metrics/BlockLength
   let(:cs) { ColorSpaceConverter::Compute }
   context '#rgb2hex' do
     subject { cs.rgb2hex(0, 0, 0)}

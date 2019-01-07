@@ -142,9 +142,7 @@ module ColorSpaceConverter
         s = (max - min).to_f/ max
       end
 
-      if h < 0
-        h += 360
-      end
+      h += 360 if h < 0
       h = h.round
       s = (s*100).round
       v = ((v/255)*100).round
@@ -153,13 +151,11 @@ module ColorSpaceConverter
 
     def hsv2rgb(h, s, v)
       rgb = []
-      max = v
-      min = max - ((s.to_f/255)*max)
       h = 0 if h == 360
       s = s.to_f / 100
       v = v.to_f / 100
 
-      if s == 0
+      if s.zero?
         r = v * 255
         g = v * 255
         b = v * 255
@@ -171,6 +167,7 @@ module ColorSpaceConverter
       q = v * (1 - s * (h.to_f / 60 - dh))
       t = v * (1 - s * (1 - (h.to_f / 60 - dh)))
 
+      # rubocop: disable Style/Semicolon
       case dh
       when 0
         r = v; g = t; b = p;
@@ -185,6 +182,7 @@ module ColorSpaceConverter
       when 5
         r = v; g = p; b = q;
       end
+      # rubocop: enable Style/Semicolon
 
       [r, g, b].each do |n|
         rgb << (n * 255).round
