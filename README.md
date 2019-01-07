@@ -84,6 +84,6 @@ Correspond to the following color space.
 - [x] RGB
 - [x] XYZ
 - [x] LAB
-- [ ] HSV
+- [x] HSV
 - [ ] PCCS
 - [ ] NCS
