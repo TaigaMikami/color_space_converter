@@ -123,5 +123,71 @@ module ColorSpaceConverter
       x, y, z = lab2xyz(l, a, b, x_n: x_n, y_n: y_n, z_n: z_n)
       xyz2rgb(x, y, z)
     end
+
+    def rgb2hsv(r, g, b)
+      max = [r, g, b].max
+      min = [r, g, b].min
+      h = 0.0
+      s = 0.0
+      v = max.to_f
+
+      if max != min
+        if max == r
+          h = (b-g).to_f/(max-min) * 60
+        elsif max == g
+          h = (2 + (r-b).to_f/(max-min)) * 60
+        elsif max == b
+          h = (4 + (g-r).to_f/(max-min)) * 60
+        end
+        s = (max - min).to_f/ max
+      end
+
+      h += 360 if h < 0
+      h = h.round
+      s = (s*100).round
+      v = ((v/255)*100).round
+      [h, s, v]
+    end
+
+    def hsv2rgb(h, s, v)
+      rgb = []
+      h = 0 if h == 360
+      s = s.to_f / 100
+      v = v.to_f / 100
+
+      if s.zero?
+        r = v * 255
+        g = v * 255
+        b = v * 255
+        return [r.to_i, g.to_i, b.to_i]
+      end
+
+      dh = h.to_f / 60
+      p = v * (1 - s)
+      q = v * (1 - s * (h.to_f / 60 - dh))
+      t = v * (1 - s * (1 - (h.to_f / 60 - dh)))
+
+      # rubocop: disable Style/Semicolon
+      case dh
+      when 0
+        r = v; g = t; b = p;
+      when 1
+        r = q; g = v; b = p;
+      when 2
+        r = p; g = v; b = t;
+      when 3
+        r = p; g = q; b = v;
+      when 4
+        r = t; g = p; b = v;
+      when 5
+        r = v; g = p; b = q;
+      end
+      # rubocop: enable Style/Semicolon
+
+      [r, g, b].each do |n|
+        rgb << (n * 255).round
+      end
+      rgb
+    end
   end
 end

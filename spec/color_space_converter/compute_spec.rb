@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe ColorSpaceConverter::Compute do
+RSpec.describe ColorSpaceConverter::Compute do # rubocop: disable Metrics/BlockLength
   let(:cs) { ColorSpaceConverter::Compute }
   context '#rgb2hex' do
     subject { cs.rgb2hex(0, 0, 0)}
@@ -44,5 +44,49 @@ RSpec.describe ColorSpaceConverter::Compute do
   context '#lab2rgb' do
     subject { cs.lab2rgb(53.58501345216902, 0.011571257239550992, -0.007345506730205287, x_n: 95.039, y_n: 100, z_n: 108.880) }
     it { expect(subject).to eq([128, 128, 128]) }
+  end
+
+  context '#rgb2hsv' do
+    context 'rgb2hsv(128, 128, 128)' do
+      subject { cs.rgb2hsv(128, 128, 128) }
+      it { expect(subject).to eq([0, 0, 50]) }
+    end
+
+    context 'rgb2hsv(128, 0, 0)' do
+      subject { cs.rgb2hsv(128, 0, 0) }
+      it { expect(subject).to eq([0, 100, 50]) }
+    end
+
+    context 'rgb2hsv(0, 128, 0)' do
+      subject { cs.rgb2hsv(0, 128, 0) }
+      it { expect(subject).to eq([120, 100, 50]) }
+    end
+
+    context 'rgb2hsv(0, 0, 128)' do
+      subject { cs.rgb2hsv(0, 0, 128) }
+      it { expect(subject).to eq([240, 100, 50]) }
+    end
+  end
+
+  context '#hsv2rgb' do
+    context 'hsv2rgb(0, 0, 50)' do
+      subject { cs.hsv2rgb(0, 0, 50) }
+      it { expect(subject).to eq([127, 127, 127]) }
+    end
+
+    context 'hsv2rgb(0, 100, 50)' do
+      subject { cs.hsv2rgb(0, 100, 50) }
+      it { expect(subject).to eq([128, 0, 0]) }
+    end
+
+    context 'hsv2rgb(120, 100, 50)' do
+      subject { cs.hsv2rgb(120, 100, 50) }
+      it { expect(subject).to eq([0, 128, 0]) }
+    end
+
+    context 'hsv2rgb(240, 100, 50)' do
+      subject { cs.hsv2rgb(240, 100, 50) }
+      it { expect(subject).to eq([0, 0, 128]) }
+    end
   end
 end
