@@ -136,7 +136,7 @@ module ColorSpaceConverter
           h = (b-g).to_f/(max-min) * 60
         elsif max == g
           h = (2 + (r-b).to_f/(max-min)) * 60
-        elsif max == g
+        elsif max == b
           h = (4 + (g-r).to_f/(max-min)) * 60
         end
         s = (max - min).to_f/ max
