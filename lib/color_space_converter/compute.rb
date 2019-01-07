@@ -150,5 +150,46 @@ module ColorSpaceConverter
       v = ((v/255)*100).round
       [h, s, v]
     end
+
+    def hsv2rgb(h, s, v)
+      rgb = []
+      max = v
+      min = max - ((s.to_f/255)*max)
+      h = 0 if h == 360
+      s = s.to_f / 100
+      v = v.to_f / 100
+
+      if s == 0
+        r = v * 255
+        g = v * 255
+        b = v * 255
+        return [r.to_i, g.to_i, b.to_i]
+      end
+
+      dh = h.to_f / 60
+      p = v * (1 - s)
+      q = v * (1 - s * (h.to_f / 60 - dh))
+      t = v * (1 - s * (1 - (h.to_f / 60 - dh)))
+
+      case dh
+      when 0
+        r = v; g = t; b = p;
+      when 1
+        r = q; g = v; b = p;
+      when 2
+        r = p; g = v; b = t;
+      when 3
+        r = p; g = q; b = v;
+      when 4
+        r = t; g = p; b = v;
+      when 5
+        r = v; g = p; b = q;
+      end
+
+      [r, g, b].each do |n|
+        rgb << (n * 255).round
+      end
+      rgb
+    end
   end
 end
