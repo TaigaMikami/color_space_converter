@@ -69,9 +69,24 @@ RSpec.describe ColorSpaceConverter::Compute do # rubocop: disable Metrics/BlockL
   end
 
   context '#hsv2rgb' do
-    context 'hsv2rgb(0, 0, 128)' do
+    context 'hsv2rgb(0, 0, 50)' do
       subject { cs.hsv2rgb(0, 0, 50) }
       it { expect(subject).to eq([127, 127, 127]) }
+    end
+
+    context 'hsv2rgb(0, 100, 50)' do
+      subject { cs.hsv2rgb(0, 100, 50) }
+      it { expect(subject).to eq([128, 0, 0]) }
+    end
+
+    context 'hsv2rgb(120, 100, 50)' do
+      subject { cs.hsv2rgb(120, 100, 50) }
+      it { expect(subject).to eq([0, 128, 0]) }
+    end
+
+    context 'hsv2rgb(240, 100, 50)' do
+      subject { cs.hsv2rgb(240, 100, 50) }
+      it { expect(subject).to eq([0, 0, 128]) }
     end
   end
 end
