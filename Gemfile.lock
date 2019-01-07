@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    color_space_converter (0.1.0)
+    color_space_converter (0.2.0)
 
 GEM
   remote: https://rubygems.org/
